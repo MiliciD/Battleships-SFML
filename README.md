@@ -50,6 +50,7 @@ classDiagram
 direction TB
 
 class GameState {
+  <<enumeration>>
   MainMenu
   History
   PlacingShips
@@ -58,11 +59,13 @@ class GameState {
 }
 
 class Difficulty {
+  <<enumeration>>
   Easy
   Smarter
 }
 
 class CellState {
+  <<enumeration>>
   Empty
   Ship
   Hit
@@ -120,11 +123,20 @@ class HistoryEntry {
 
 Game "1" *-- "1" Board : player
 Game "1" *-- "1" Board : computer
-Game "1" o-- "0..1" ShotInfo
-Board ..> ShipDef
+
+' Fara multiplicitate 0..1 spre ShotInfo (doar legatura vizuala)
+Game --> ShotInfo
+
+' Inversam directia pentru ShipDef -> Board (cum ai cerut)
+ShipDef --> Board
+
 Stats ..> HistoryEntry
 
-Game --> GameState
-Game --> Difficulty
+' Inversam directia pentru GameState/Difficulty spre Game
+GameState --> Game
+Difficulty --> Game
+
+' CellState legat de Board si ShotInfo (pastrat)
 Board --> CellState
 ShotInfo --> CellState
+
