@@ -124,19 +124,19 @@ class HistoryEntry {
 Game "1" *-- "1" Board : player
 Game "1" *-- "1" Board : computer
 
-' Fara multiplicitate 0..1 spre ShotInfo (doar legatura vizuala)
-Game --> ShotInfo
+' Legaturi catre ShotInfo fara multiplicitate 0..1 (doar relatie vizuala)
+Game --> ShotInfo : lastPlayerShot
+Game --> ShotInfo : lastComputerShot
 
-' Inversam directia pentru ShipDef -> Board (cum ai cerut)
-ShipDef --> Board
+' ShipDef legat de Board, dar invers (sageata pleaca din ShipDef spre Board)
+ShipDef ..> Board
 
 Stats ..> HistoryEntry
 
-' Inversam directia pentru GameState/Difficulty spre Game
+' Difficulty si GameState cu sageata spre Game (cum ai cerut)
 GameState --> Game
 Difficulty --> Game
 
-' CellState legat de Board si ShotInfo (pastrat)
+' CellState legat de Board si ShotInfo (corect)
 Board --> CellState
 ShotInfo --> CellState
-
