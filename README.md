@@ -2,6 +2,9 @@
 
 Jocul Battleships implementat in C++ 17 + SFML 3, cu interfata grafica, AI pe doua dificultati, audio si istoric al rezultatelor.
 
+### IMPORTANT
+- Pentru a rula jocul din .exe fie in folder-ul debug fie in release (in functie de build) folder-ul "assets" trebuie copiat in totalitate langa acel .exe
+
 ---
 
 # Functionalitati
