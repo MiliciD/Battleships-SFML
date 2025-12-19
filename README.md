@@ -50,7 +50,6 @@ classDiagram
 direction TB
 
 class GameState {
-  <<enumeration>>
   MainMenu
   History
   PlacingShips
@@ -59,13 +58,11 @@ class GameState {
 }
 
 class Difficulty {
-  <<enumeration>>
   Easy
   Smarter
 }
 
 class CellState {
-  <<enumeration>>
   Empty
   Ship
   Hit
