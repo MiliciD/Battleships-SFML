@@ -50,7 +50,6 @@ classDiagram
 direction TB
 
 class GameState {
-  <<enumeration>>
   MainMenu
   History
   PlacingShips
@@ -59,13 +58,11 @@ class GameState {
 }
 
 class Difficulty {
-  <<enumeration>>
   Easy
   Smarter
 }
 
 class CellState {
-  <<enumeration>>
   Empty
   Ship
   Hit
@@ -123,20 +120,7 @@ class HistoryEntry {
 
 Game "1" *-- "1" Board : player
 Game "1" *-- "1" Board : computer
-
-' Legaturi catre ShotInfo fara multiplicitate 0..1 (doar relatie vizuala)
-Game --> ShotInfo : lastPlayerShot
-Game --> ShotInfo : lastComputerShot
-
-' ShipDef legat de Board, dar invers (sageata pleaca din ShipDef spre Board)
-ShipDef ..> Board
-
-Stats ..> HistoryEntry
-
-' Difficulty si GameState cu sageata spre Game (cum ai cerut)
-GameState --> Game
-Difficulty --> Game
-
-' CellState legat de Board si ShotInfo (corect)
-Board --> CellState
-ShotInfo --> CellState
+Game "1" o-- "0..1" ShotInfo : lastPlayerShot
+Game "1" o-- "0..1" ShotInfo : lastComputerShot
+Board ..> ShipDef : foloseste la plasare
+Stats ..> HistoryEntry : produce/citeste
