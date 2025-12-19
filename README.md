@@ -120,7 +120,11 @@ class HistoryEntry {
 
 Game "1" *-- "1" Board : player
 Game "1" *-- "1" Board : computer
-Game "1" o-- "0..1" ShotInfo : lastPlayerShot
-Game "1" o-- "0..1" ShotInfo : lastComputerShot
-Board ..> ShipDef : foloseste la plasare
-Stats ..> HistoryEntry : produce/citeste
+Game "1" o-- "0..1" ShotInfo
+Board ..> ShipDef
+Stats ..> HistoryEntry
+
+Game --> GameState
+Game --> Difficulty
+Board --> CellState
+ShotInfo --> CellState
